@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, View
 # Create your views here.
 from django.core.exceptions import ImproperlyConfigured
+from django.views.decorators.csrf import csrf_exempt
 
 from .nutrition import UpcFood
 import os
@@ -17,6 +18,7 @@ if '' in envs.values(): ### in one value isn't set
 class HomeView(TemplateView):
     template_name = 'landing_page.html'
 
+@csrf_exempt
 class UPCAPI(View):
     http_method_names = [u'post']
 
