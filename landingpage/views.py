@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .nutrition import UpcFood
 import os
+import json
 
 envs = {
     'TOKEN' : os.environ.get('api_key', ''),
@@ -32,8 +33,8 @@ class UPCAPI(View):
         api_key = os.environ.get('api_key', '')  #api_key, 
         api_id = os.environ.get('api_id', '') #api_id)
         
-        u = UpcFood(upc_code, api_key, api_id)
-        context = u.get_food_item()
+        # u = UpcFood(upc_code, api_key, api_id)
+        # context = u.get_food_item()
 
         context.update({'request': 'ok'})
 
