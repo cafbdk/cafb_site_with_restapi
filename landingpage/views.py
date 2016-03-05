@@ -38,18 +38,18 @@ class UPCAPI(View):
         # u = UpcFood(upc_code, api_key, api_id)
         # context = u.get_food_item()
 
-        # context.update({'request': 'ok'})
+        context.update({'request': 'ok', 'upc_requested' : upc_code})
 
         response = unirest.get("https://api.nutritionix.com/v1_1/item?upc={upc}&appId={apiID}&appKey={apiKey}".format(
-                apiID=api_id, apiKey=api_key, upc=upc_code),
-                               headers={"Accept": "application/json"})
+                # apiID=api_id, apiKey=api_key, upc=upc_code),
+                #                headers={"Accept": "application/json"})
 
-        food_info = response.body
-        new_dict_keys = map(lambda x:str(x).replace('nf_',''), food_info.keys())
-        food_info = dict(zip(new_dict_keys, food_info.values()))
-        food_info.update({'upcCode': upc_code})
+        # food_info = response.body
+        # new_dict_keys = map(lambda x:str(x).replace('nf_',''), food_info.keys())
+        # context = dict(zip(new_dict_keys, food_info.values()))
+        # context.update({'upc_code_requested': upc_code})
 
-        return HttpResponse(json.dumps(food_info), content_type = "application/json") 
+        return HttpResponse(json.dumps(context), content_type = "application/json") 
 
 
 
