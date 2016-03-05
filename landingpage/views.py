@@ -8,6 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .nutrition import UpcFood
 import os
 import json
+import unirest
+
 
 envs = {
     'TOKEN' : os.environ.get('api_key', ''),
