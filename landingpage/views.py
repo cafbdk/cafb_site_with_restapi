@@ -30,7 +30,7 @@ class UPCAPI(View):
         """
         Custom method for listview
         """
-        upc_code = request.POST.get('upc', 'not works')
+        upc_code = request.POST.get('upc', 'not finding upc code')
 
         api_key = os.environ.get('api_key', '')  #api_key, 
         api_id = os.environ.get('api_id', '') #api_id)
@@ -38,7 +38,7 @@ class UPCAPI(View):
         # u = UpcFood(upc_code, api_key, api_id)
         # context = u.get_food_item()
 
-        context = {'request': 'ok', 'upc_requested' : upc_code}
+        context = {'request': 'ok', 'upc_requested' : request}
 
         # response = unirest.get("https://api.nutritionix.com/v1_1/item?upc={upc}&appId={apiID}&appKey={apiKey}".format(
                 # apiID=api_id, apiKey=api_key, upc=upc_code),
