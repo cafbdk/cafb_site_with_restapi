@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, View
 # Create your views here.
 from django.core.exceptions import ImproperlyConfigured
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from .nutrition import UpcFood
