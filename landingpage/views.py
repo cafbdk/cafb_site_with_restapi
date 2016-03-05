@@ -18,10 +18,11 @@ if '' in envs.values(): ### in one value isn't set
 class HomeView(TemplateView):
     template_name = 'landing_page.html'
 
-@csrf_exempt
+
 class UPCAPI(View):
     http_method_names = [u'post']
 
+    @method_decorator(csrf_exempt)
     def post(self, request, *args, **kwargs):
         """
         Custom method for listview
