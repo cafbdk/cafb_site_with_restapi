@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>DataKinda - Capital Area Food Bank Food Scanner</title>
+
+    <!-- for FF, Chrome, Opera -->
+    <link rel="icon" type="image/png" href="{% static 'python16x16.png' %}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{% static 'python32x32.png' %}" sizes="32x32">
+
+    <!-- for IE -->
+    <link rel="icon" type="image/x-icon" href="{% static 'pythonicon.gif' %}" >
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'pythonicon.gif' %}"/>
+
+
+    <!--Import Google Icon Font-->
+    <link type="text/css" href='{% static 'css/matertial-icons.css' %}'  rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href='{% static 'Materialize/dist/css/materialize.min.css' %}'  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+</head>
+
+    <body>
+
+    {% include "nav-bar.html" %} 
+              <!-- Page Layout here -->
+        <div class="row">
+
+
+
+            {% block content %}
+            {% endblock content %}
+
+
+
+        </div>
+
+
+
+    
+
+    </div>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src='{% static "jquery/dist/jquery.min.js" %}'></script>
+    <script type="text/javascript" src='{% static "Materialize/dist/js/materialize.min.js" %}'></script> 
+    <script type="text/javascript" src ='{% static  "js/google_analytics.js" %}'></script>
+    <script type="text/javascript" src ='{% static  "js/scripts.js" %}'></script>
+    </body>
+
+    {% include "footer.html" %} 
+</html>

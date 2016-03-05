@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+    {% load static %}
+    {% block content %}
+
+  <body>
+
+    <div id="main">
+
+
+    <div class="divider"></div>
+      <div class="section">
+        <h4> What is this Project? </h4>
+        <p class="flow-text">
+        Description of the project
+         </p> 
+
+    </div>
+
+    <div class="divider"></div>
+
+      <h4>Items Scanned </h4>
+
+      <table class="responsive-table highlight">
+        <thead>
+          <tr>
+              <th data-field="activity">UPC</th>
+              <th data-field="time">Item</th>
+              
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>SAMPLE 234234234</td>
+            <td>Sample item</td>
+          </tr>
+
+
+        </tbody>
+      </table>
+
+
+
+
+    </div>
+
+
+  </body>
+
+{% endblock content %}
+

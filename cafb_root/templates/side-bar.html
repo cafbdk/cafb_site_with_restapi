@@ -1,0 +1,50 @@
+{% load static %}
+<!-- SIDE BAR -->
+    
+
+    <img class="responsive-img" src='{% static  "img/pythonBlue-600x600.png" %}' />
+
+    <h5>Sign up for the Next Dojo</h5>    
+
+    <p >Find the details on our next dojo and sign up <a href="https://ti.to/dc-python-dojo/">can be found here.</a> </p>
+
+    <div class="divider"></div>
+<!--     <img class="responsive-img" src='{% static  "img/email.png" %}' />
+    <img class="responsive-img" src='{% static  "img/twitter.png" %}' />
+    <img class="responsive-img" src='{% static  "img/github.png" %}' />
+
+
+    <a href="mailto:dcpydojo@gmail.com"><img id="icons" src="img/email.png" width="35px"/></a>  
+    <a href="http://twitter.com/dcpydojo"><img id="icons2" src="img/twitter.png" width="35px"/></a>
+    <a href="http://github.com/dcpydojo"><img src="img/github.png" width="30px"/></a> -->
+
+
+    <br>
+
+        <h5>Slack Team                    
+            <div class="col s2">
+                <img class="responsive-img" src='{% static  "img/Slack_Icon.png" %}'> <!-- notice the "circle" class -->
+            </div>
+        </h5>
+
+        <p>We collaborate on slack during the dojo. </p>
+
+        <div id='slack_request_form'> 
+            <form id="ajax_form" enctype="multipart/form-data" accept-charset="UTF-8"> {% csrf_token %} 
+                    <label for="first_name">Request Invite</label>   
+                    <!-- <input placeholder="Email" id="email" type="email" class="validate">    -->
+                    {{ form.email }}
+            </form>
+        </div>
+
+            
+
+        <div class="collection">
+            <a href="https://dcpythondojo.slack.com" class="collection-item">https://dcpythondojo.slack.com
+
+            </a>        
+        </div>  
+
+
+
+<!-- END SIDE BAR -->
