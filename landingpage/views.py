@@ -24,10 +24,6 @@ class HomeView(TemplateView):
 class UPCAPI(View):
     http_method_names = [u'post']
 
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super(UPCAPI, self).dispatch(request, *args, **kwargs)
-
     def post(self, request, *args, **kwargs):
         """
         Custom method for listview
