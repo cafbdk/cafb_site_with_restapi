@@ -8,5 +8,6 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('landingpage.urls')),
+    # url(r'^api-auth/', include('restapi.urls', namespace='rest_framework'))
 
 ]
