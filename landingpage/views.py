@@ -30,9 +30,9 @@ class UPCAPI(View):
         api_id = os.environ.get('api_id', '') #api_id)
         
         u = UpcFood(upc_code, api_key, api_id)
-        context = u.food_info()
+        context = u.get_food_item()
 
-        context.update({'upc_code': upc_code, 'request': 'ok'})
+        context.update({'request': 'ok'})
 
         return HttpResponse(json.dumps(context), content_type = "application/json") 
 

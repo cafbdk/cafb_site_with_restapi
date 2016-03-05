@@ -18,7 +18,7 @@ class UpcFood(object):
         self.api_key = api_key 
         self.api_id = api_id
 #         self.food_type = food_type
-        self.run()
+        # self.run()
         
     def reset_keys(self, new_key):
         """
@@ -101,7 +101,22 @@ class UpcFood(object):
             self.wellness = 'Not healthy!'
         return self.wellness
         
-    def run():
+    def run(self):
         self.get_food_item()
         self.convert_dict_to_attributes()
         self.wellness_logic()
+
+if __name__ == '__main__':
+    
+    # api_key = ''
+    # api_id = ''
+
+    # upc_code = '725342381715'
+
+    # u = UpcFood(upc_code, api_key, api_id)
+    # context = u.get_food_item()
+
+    # context.update({'upc_code': upc_code, 'request': 'ok'})
+
+    # print context
+    pass
