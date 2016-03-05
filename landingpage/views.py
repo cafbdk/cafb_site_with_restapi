@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, View
 # Create your views here.
+from django.core.exceptions import ImproperlyConfigured
 
 from .nutrition import UpcFood
 import os
