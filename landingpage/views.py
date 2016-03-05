@@ -33,26 +33,7 @@ class UPCAPI(View):
 
         context.update({'upc_code':'ok'})
 
-        raise Exception(context)
-
         return HttpResponse(json.dumps(context), content_type = "application/json") 
 
-    def post(self, request, *args, **kwargs):
-        """
-        Custom method for listview
-        """
-        upc_code = request.POST.get('upcCode', 'not works')
-
-        api_key = os.environ.get('api_key', '')  #api_key, 
-        api_id = os.environ.get('api_id', '') #api_id)
-        u = UpcFood(upc_code, api_key, api_id)
-
-        context = u.convert_dict_to_attributes()
-
-        context.update({'upc_code':'ok'})
-
-        raise Exception(context)
-
-        return HttpResponse(json.dumps(context), content_type = "application/json")  
 
 
