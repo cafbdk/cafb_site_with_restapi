@@ -40,7 +40,7 @@ class UPCAPI(View):
 
         context.update({'request': 'ok', 'upc_requested' : upc_code})
 
-        response = unirest.get("https://api.nutritionix.com/v1_1/item?upc={upc}&appId={apiID}&appKey={apiKey}".format(
+        # response = unirest.get("https://api.nutritionix.com/v1_1/item?upc={upc}&appId={apiID}&appKey={apiKey}".format(
                 # apiID=api_id, apiKey=api_key, upc=upc_code),
                 #                headers={"Accept": "application/json"})
 
