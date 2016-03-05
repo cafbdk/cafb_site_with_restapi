@@ -1,5 +1,7 @@
 dj-database-url==0.4.0
 Django==1.9.2
+django-bower==5.1.0
 gunicorn==19.4.5
 psycopg2==2.6.1
+six==1.10.0
 whitenoise==2.0.6
