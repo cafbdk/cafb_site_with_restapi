@@ -2,3 +2,4 @@ venv
 *.pyc
 staticfiles
 .env
+bower_components/**

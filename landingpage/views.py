@@ -72,7 +72,7 @@ class UPCAPI(View):
             context.update({'status': True})
             # print context
 
-        except:
+        except: #Product.DoesNotExist
             
 
             response = unirest.get("https://api.nutritionix.com/v1_1/item?upc={upc}&appId={apiID}&appKey={apiKey}".format(
@@ -95,6 +95,7 @@ class UPCAPI(View):
         
         context.update({'gtin_code': upc_code})
         return HttpResponse(json.dumps(context), content_type = "application/json") 
+
 
 
 

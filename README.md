@@ -1,43 +1,40 @@
-# Heroku Django Starter Template
+# Capital Area Foodbank UPC Scanner Site and backend
 
-An utterly fantastic project starter template for Django 1.9.
+### Data to be investigated then parsed and cleaned
 
-## Features
+http://us.openfoodfacts.org/data
 
-- Production-ready configuration for Static Files, Database Settings, Gunicorn, etc.
-- Enhancements to Django's static file serving functionality via WhiteNoise
+http://www.mynetdiary.com/food-database.html
 
-## How to Use
 
-To use this project, follow these steps:
+### Mobile App to be refactored
 
-1. Create your working environment.
-2. Install Django (`$ pip install django`)
-3. Create a new project using this template
 
-## Creating Your Project
+#### Use this as a starting point
+https://github.com/openfoodfacts/openfoodfacts-android/tree/master/phonegap/Open%20Food%20Facts
 
-Using this template to create a new Django app is easy::
 
-    $ django-admin.py startproject --template=https://github.com/heroku/heroku-django-template/archive/master.zip --name=Procfile helloworld
+### To Do Items:
 
-You can replace ``helloworld`` with your desired project name.
+Add Captcha for form
 
-## Deployment to Heroku
+https://github.com/praekelt/django-recaptcha
 
-    $ git init
-    $ git add -A
-    $ git commit -m "Initial commit"
 
-    $ heroku create
-    $ git push heroku master
 
-    $ heroku run python manage.py migrate
+### Heroku Config (in .env or in heroku settings page)
 
-See also, a [ready-made application](https://github.com/heroku/python-getting-started), ready to deploy.
+heroku config:add BUILDPACK_URL=https://github.com/amanjain/heroku-buildpack-python-with-django-bower.git
 
-## Further Reading
+heroku config:add api_key=(insert nutrix api key here)
+heroku config:add api_id=(insert nutrix api id here)
 
-- [Gunicorn](https://warehouse.python.org/project/gunicorn/)
-- [WhiteNoise](https://warehouse.python.org/project/whitenoise/)
-- [dj-database-url](https://warehouse.python.org/project/dj-database-url/)
+### REST API
+
+No tokens or keys required for this version of the API
+
+#### Listview of all UPCs in DB so far
+https://cafbsite.herokuapp.com/api/
+
+#### Query Products UPCs already in the DB
+http://localhost:8000/api/auth/upc=52009830171/?format=json
