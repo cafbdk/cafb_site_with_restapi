@@ -84,7 +84,7 @@ class UPCAPI(View):
                 new_dict_keys = map(lambda x:str(x).replace('nf_',''), food_info.keys())
                 context = dict(zip(new_dict_keys, food_info.values()))
 
-                upc_code = int(upc_code)
+                # upc_code = int(upc_code)
                 obj = Product(gtin_code=upc_code, gtin_name=context['item_name'])
                 obj.save()                
 

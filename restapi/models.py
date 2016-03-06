@@ -5,7 +5,7 @@ from django.db import models
 # Create your models here.
 
 class Product(models.Model):
-    gtin_code = models.TextField()
+    gtin_code = models.TextField(max_length=50)
     gtin_name = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
 
