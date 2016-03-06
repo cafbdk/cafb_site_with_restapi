@@ -18,7 +18,9 @@ class Command(BaseCommand):
             
         for product in data[1:]:
             product = unicode(product, 'utf-8').replace('\n', '').split(',')
-            obj = Product(gtin_code=product[1], gtin_name=product[2])
+            upc_code = int(product[1])
+
+            obj = Product(gtin_code=upc_code, gtin_name=product[2])
             obj.save()
 
             self.stdout.write(self.style.SUCCESS('Product name: Added "%s"' % product[2]))
