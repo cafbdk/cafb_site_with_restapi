@@ -60,10 +60,10 @@ $( document ).ready(function() {
                                     UPC Code: '  + data['gtin_code'] + "</p> </div>");
                     }
 
+                },
+                error : function (request, status, error) {
+                    console.log(request.responseText);
                 }
-                error: function (request, status, error) {
-                    alert(request.responseText);
-    }
             });
         }
 
