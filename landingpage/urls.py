@@ -21,11 +21,10 @@ url(r'^slack/', include('django_slack_invite.urls'))
 """
 from django.conf.urls import url
 from .views import HomeView, UPCAPI
-from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
-        url(r'upc/', csrf_exempt(UPCAPI.as_view())),
+        url(r'upc/', UPCAPI.as_view()),
     
 
 
