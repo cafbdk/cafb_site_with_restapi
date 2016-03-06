@@ -24,20 +24,46 @@
         <thead>
           <tr>
               <th data-field="activity">UPC</th>
-              <th data-field="time">Item</th>
+              <th data-field="time">Item Name</th>
+              <th data-field="time">Date Entered into DB</th>
+
               
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <td>SAMPLE 234234234</td>
-            <td>Sample item</td>
-          </tr>
+            {% for product in list_products %}
+            <tr>
+              <td>{{ product.gtin_code }}</td>
+              <td>{{ product.gtin_name }}</td>
+              <td>{{ product.created }}</td>
 
+            </tr>
+            {% endfor %}
 
         </tbody>
       </table>
+
+      {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <h3>Your Products List</h3>
+            <p>Prodcuts not yet available</p>
+        {% endif %}
 
 
 

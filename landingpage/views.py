@@ -1,9 +1,13 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, View
+from django.views.generic import ListView, View
 # Create your views here.
 from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+from restapi.models import Product
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
+
 
 from .nutrition import UpcFood
 import os
@@ -19,8 +23,31 @@ envs = {
 if '' in envs.values(): ### in one value isn't set
     raise ImproperlyConfigured('landing_page.views: Set all values in the .env or with heroku:config.')
 
-class HomeView(TemplateView):
+class HomeView(ListView):
+    model = Product
     template_name = 'landing_page.html'
+    context_object_name = "product_list"
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs) 
+        list_products = Product.objects.all()
+        paginator = Paginator(list_products, self.paginate_by)
+
+        page = self.request.GET.get('page')
+
+        try:
+            file_products = paginator.page(page)
+        except PageNotAnInteger:
+            file_products = paginator.page(1)
+        except EmptyPage:
+            file_products = paginator.page(paginator.num_pages)
+
+        context['list_products'] = file_products
+        return context
+
+
+
 
 
 class UPCAPI(View):
