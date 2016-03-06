@@ -31,7 +31,7 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs) 
-        list_products = Product.objects.all()
+        list_products = Product.objects.all().order_by('created').reverse()
         paginator = Paginator(list_products, self.paginate_by)
 
         page = self.request.GET.get('page')
@@ -44,10 +44,11 @@ class HomeView(ListView):
             file_products = paginator.page(paginator.num_pages)
 
         context['list_products'] = file_products
+
+        obj = Product.objects.filter(gtin_code=12000017421)
+        # raise Exception((obj.values())[0])
+
         return context
-
-
-
 
 
 class UPCAPI(View):
@@ -57,25 +58,41 @@ class UPCAPI(View):
         """
         Custom method for listview
         """
-        upc_code = request.POST.get('upc', 'not finding upc code')
+        upc_code = request.POST.get('upc_code', 'NONE')
 
         api_key = os.environ.get('api_key', '')  #api_key, 
         api_id = os.environ.get('api_id', '') #api_id)
         
-        # u = UpcFood(upc_code, api_key, api_id)
-        # context = u.get_food_item()
+        try:
+            # raise Exception
+            obj = Product.objects.filter(gtin_code=upc_code)
+            context = {'status': True}
+            context.update(obj.values()[0])
+            del context['created']
+            context.update({'status': True})
+            # print context
 
-        context = {'request': 'ok', 'upc_requested' : upc_code}
+        except:
+            
 
-        # response = unirest.get("https://api.nutritionix.com/v1_1/item?upc={upc}&appId={apiID}&appKey={apiKey}".format(
-                # apiID=api_id, apiKey=api_key, upc=upc_code),
-                #                headers={"Accept": "application/json"})
+            response = unirest.get("https://api.nutritionix.com/v1_1/item?upc={upc}&appId={apiID}&appKey={apiKey}".format(
+                    apiID=api_id, apiKey=api_key, upc=upc_code),
+                                   headers={"Accept": "application/json"})
+            if response.code == 200:
 
-        # food_info = response.body
-        # new_dict_keys = map(lambda x:str(x).replace('nf_',''), food_info.keys())
-        # context = dict(zip(new_dict_keys, food_info.values()))
-        # context.update({'upc_code_requested': upc_code})
+                food_info = response.body
+                new_dict_keys = map(lambda x:str(x).replace('nf_',''), food_info.keys())
+                context = dict(zip(new_dict_keys, food_info.values()))
 
+                obj = Product(gtin_code=upc_code, gtin_name=context['item_name'])
+                obj.save()                
+
+                context['gtin_name'] = context['item_name']
+                context.update({'status': True})
+            else:
+                context = {'status': False}
+        
+        context.update({'gtin_code': upc_code})
         return HttpResponse(json.dumps(context), content_type = "application/json") 
 
 

@@ -19,18 +19,21 @@
     <div class="divider"></div>
       <div class="section">
 
-        <h5> Request a UPC</h5>
+        <h5>Request a UPC</h5>
 
 
         <div class="row">
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s6">
+          <form id='ajax_form' class="col s12"> {% csrf_token %}
+              <div class="input-field col">
+              
                 <i class="material-icons prefix">playlist_add</i>
-                <input id="icon_telephone" type="tel" class="validate">
-                <label for="icon_telephone">Telephone</label>
+                <input name="upc_code" type="text" pattern="\d*" class="validate">
+                <label for="upc_code">UPC Numeric Code</label>
+                <button id='ajax_form' class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+                </button>
+
               </div>
-            </div>
           </form>
         </div>
 
