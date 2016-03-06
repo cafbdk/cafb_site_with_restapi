@@ -37,4 +37,6 @@ No tokens or keys required for this version of the API
 https://cafbsite.herokuapp.com/api/
 
 #### Query Products UPCs already in the DB
-http://localhost:8000/api/auth/upc=52009830171/?format=json
+https://cafbsite.herokuapp.com/api/auth/upc=52009830171/?format=json
+
+Should return {"gtin_code":"52009830171","gtin_name":"Honey","created":"2016-03-06T04:34:59.001637Z"}
