@@ -12,13 +12,6 @@ Add your nutrix api key and api_id to sample.env and rename sample.env to .env
 
 `mv sample.env .env`
 
-### Run locally with heroku toolbelt
-
-Install here https://toolbelt.heroku.com/
-
-`heroku local`
-
-
 ### Set up your database and create a super user
 
 `python manage.py migrate`
@@ -26,9 +19,17 @@ Install here https://toolbelt.heroku.com/
 `python manage.py createsuperuser`
 
 
-### Load initial data with a management command
+### Load initial product data with upcs with a management command
 
 `python manage.py load_initial_data`
+
+
+### Run locally with heroku toolbelt
+
+Install here https://toolbelt.heroku.com/
+
+`heroku local`
+
 
 
 # Capital Area Foodbank UPC Scanner Site and backend
