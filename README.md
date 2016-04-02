@@ -6,15 +6,15 @@
 
 `pip install -r requirements.txt`
 
-### Heroku Config (in .env or in heroku settings page)
-
-Run locally with heroku toolbelt
-
-Install here https://toolbelt.heroku.com/
+### Set up your local environment variables
 
 Add your nutrix api key and api_id to sample.env and rename sample.env to .env
 
 `mv sample.env .env`
+
+### Run locally with heroku toolbelt
+
+Install here https://toolbelt.heroku.com/
 
 `heroku local`
 
