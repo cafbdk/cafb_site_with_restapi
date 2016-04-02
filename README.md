@@ -58,6 +58,11 @@ heroku config:add BUILDPACK_URL=https://github.com/amanjain/heroku-buildpack-pyt
 heroku config:add api_key=(insert nutrix api key here)
 heroku config:add api_id=(insert nutrix api id here)
 
+### Load initial Data
+
+`python manage.py load_initial_data`
+
+
 ### REST API
 
 No tokens or keys required for this version of the API
