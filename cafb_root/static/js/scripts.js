@@ -6,20 +6,20 @@ $( document ).ready(function() {
 
 
 
-        $('form#ajax_form').submit(function (e) {
+        $('form#ajax_form').submit(function (e) { 
             event.preventDefault();
-            console.log("form submitted!");
+            console.log("form submitted!"); 
 
             var upc_code = $('input[name="upc_code"]').val();
             var csrf_token = $("input[name='csrfmiddlewaretoken']").val()
 
 
-            var post_data = {             'upc_code': upc_code,
+            var post_data = {             'upc_code': upc_code, 
                             'csrfmiddlewaretoken': csrf_token,
                            };
 
             console.log( post_data );
-
+            
             create_post(post_data);
             return false;
 
@@ -34,7 +34,7 @@ $( document ).ready(function() {
                 data : post_data , // data sent with the post request
 
                 // handle a successful response
-                success : function(data) {
+                success : function(data) { 
                     console.log("success"); // another sanity check
                     console.log(data);
                     $('div[name="request_status"]').remove();
@@ -48,8 +48,8 @@ $( document ).ready(function() {
                                     Item Name: ' + data['gtin_name'] + '<br>' +
                                     'UPC Code: '  + data['gtin_code'] +
                                      '</p> </div> ');
-
-
+                    
+                        
                     }
                     else {
                         $('form#ajax_form').parent().parent().append('\

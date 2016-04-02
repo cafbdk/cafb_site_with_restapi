@@ -30,7 +30,7 @@ class HomeView(ListView):
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs) 
+        context = super(HomeView, self).get_context_data(**kwargs)
         list_products = Product.objects.all().order_by('created').reverse()
         paginator = Paginator(list_products, self.paginate_by)
 
@@ -50,6 +50,56 @@ class HomeView(ListView):
 
         return context
 
+class UPCFoundView(ListView):
+    model = Product
+    template_name = 'UPC_Found.html'
+
+    def upc_found(self, **kwargs):
+        return render(self, template_name)
+
+class UPCNotFoundView(ListView):
+    model = Product
+    template_name = 'UPC_Not_Found.html'
+
+    def upc_not_found(self, **kwargs):
+        return render(self, template_name)
+
+class TryAgainView(ListView):
+    model = Product
+    template_name = 'try_again.html'
+
+    def try_again(self, **kwargs):
+        return render(self, template_name)
+
+class TakePicView(ListView):
+    model = Product
+    template_name = 'take_pic.html'
+
+    def take_pic(self, **kwargs):
+        return render(self, template_name)
+
+class SkipView(ListView):
+    model = Product
+    template_name = 'skip.html'
+
+    def skip(self, **kwargs):
+        return render(self, template_name)
+
+class WellnessYesView(ListView):
+    model = Product
+    template_name = 'wellness_yes.html'
+
+    def wellness_yes(self, **kwargs):
+        return render(self, template_name)
+
+class WellnessNoView(ListView):
+    model = Product
+    template_name = 'wellness_no.html'
+
+    def wellness_no(self, **kwargs):
+        return render(self, template_name)
+
+
 
 class UPCAPI(View):
     http_method_names = [u'post']
@@ -60,9 +110,9 @@ class UPCAPI(View):
         """
         upc_code = request.POST.get('upc_code', 'NONE')
 
-        api_key = os.environ.get('api_key', '')  #api_key, 
+        api_key = os.environ.get('api_key', '')  #api_key,
         api_id = os.environ.get('api_id', '') #api_id)
-        
+
         try:
             # raise Exception
             obj = Product.objects.filter(gtin_code=upc_code)
@@ -73,7 +123,7 @@ class UPCAPI(View):
             # print context
 
         except: #Product.DoesNotExist
-            
+
 
             response = unirest.get("https://api.nutritionix.com/v1_1/item?upc={upc}&appId={apiID}&appKey={apiKey}".format(
                     apiID=api_id, apiKey=api_key, upc=upc_code),
@@ -86,16 +136,12 @@ class UPCAPI(View):
 
                 # upc_code = int(upc_code)
                 obj = Product(gtin_code=upc_code, gtin_name=context['item_name'])
-                obj.save()                
+                obj.save()
 
                 context['gtin_name'] = context['item_name']
                 context.update({'status': True})
             else:
                 context = {'status': False}
-        
+
         context.update({'gtin_code': upc_code})
-        return HttpResponse(json.dumps(context), content_type = "application/json") 
-
-
-
-
+        return HttpResponse(json.dumps(context), content_type = "application/json")

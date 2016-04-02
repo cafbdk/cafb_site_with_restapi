@@ -2,5 +2,5 @@ venv
 *.pyc
 staticfiles
 .env
-bower_components/**
+bower_components
 *.sqlite3
