@@ -1,3 +1,13 @@
+# Capital Area Foodbank Site and Backend
+## Set Up Instructions to get developing
+
+### Set up a project directory
+
+`mkdir cafb_site`
+`cd cafb_site`
+`git clone https://github.com/cafbdk/cafb_site_with_restapi.git`
+`cd cafb_site_with_restapi`
+
 ### Set up your local virtual env with [virtualenv](https://virtualenv.pypa.io/en/latest/)
 
 `virtualenv venv`
