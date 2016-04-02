@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, CreateView
 # Create your views here.
 from django.core.exceptions import ImproperlyConfigured
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from restapi.models import Product
 from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
