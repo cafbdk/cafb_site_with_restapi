@@ -1,4 +1,4 @@
-### Set up your local virtual env with virtualenv
+### Set up your local virtual env with [virtualenv](https://virtualenv.pypa.io/en/latest/)
 
 `virtualenv venv`
 
@@ -29,8 +29,6 @@ Add your nutrix api key and api_id to sample.env and rename sample.env to .env
 Install here https://toolbelt.heroku.com/
 
 `heroku local`
-
-
 
 # Capital Area Foodbank UPC Scanner Site and backend
 
