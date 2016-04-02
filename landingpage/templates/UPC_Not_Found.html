@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+    {% load static %}
+    {% block content %}
+
+  <body>
+    <div id="main">
+
+
+      <h4> Item Not Found </h4>
+
+      <!-- this should start from scan again -->
+  <a class="waves-effect waves-light btn" href="{% url 'take_pic' %}">Take Pictures</a> 
+  <a class="waves-effect waves-light btn" href="{% url 'home' %}">Back to Scan</a>
+
+
+    <div class="divider"></div>
+      <div class="section">
+        <h4> What is this Project? </h4>
+        <p class="flow-text">
+        Description of the project
+         </p>
+
+    </div>
+  </body>
+
+{% endblock content %}
