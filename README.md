@@ -1,3 +1,36 @@
+### Set up your local virtual env with virtualenv
+
+`virtualenv venv`
+
+`source venv/bin/activate`
+
+`pip install -r requirements.txt`
+
+### Heroku Config (in .env or in heroku settings page)
+
+Run locally with heroku toolbelt
+
+Install here https://toolbelt.heroku.com/
+
+Add your nutrix api key and api_id to sample.env and rename sample.env to .env
+
+`mv sample.env .env`
+
+`heroku local`
+
+
+### Set up your database and create a super user
+
+`python manage.py migrate`
+
+`python manage.py createsuperuser`
+
+
+### Load initial data with a management command
+
+`python manage.py load_initial_data`
+
+
 # Capital Area Foodbank UPC Scanner Site and backend
 
 ### Data to be investigated then parsed and cleaned
@@ -19,22 +52,6 @@ https://github.com/openfoodfacts/openfoodfacts-android/tree/master/phonegap/Open
 Add Captcha for form
 
 https://github.com/praekelt/django-recaptcha
-
-
-
-### Heroku Config (in .env or in heroku settings page)
-
-Run locally with heroku toolbelt
-
-Add your nutrix api key and api_id to sample.env
-
-rename sample.env to .env
-
-`cp sample.env .env`
-
-`heroku local`
-
----
 
 heroku config:add BUILDPACK_URL=https://github.com/amanjain/heroku-buildpack-python-with-django-bower.git
 
