@@ -24,6 +24,18 @@ https://github.com/praekelt/django-recaptcha
 
 ### Heroku Config (in .env or in heroku settings page)
 
+Run locally with heroku toolbelt
+
+Add your nutrix api key and api_id to sample.env
+
+rename sample.env to .env
+
+`cp sample.env .env`
+
+`heroku local`
+
+---
+
 heroku config:add BUILDPACK_URL=https://github.com/amanjain/heroku-buildpack-python-with-django-bower.git
 
 heroku config:add api_key=(insert nutrix api key here)
