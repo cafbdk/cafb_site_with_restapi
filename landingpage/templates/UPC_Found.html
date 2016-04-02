@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+    {% load static %}
+    {% block content %}
+
+  <body>
+    <div id="main">
+      <div class="section">
+        <h4> Item Found! </h4>
+        <!-- UPC info variable -->
+    <h4> Is this correct? </h4>
+    <a class="waves-effect waves-light btn" href="{% url 'wellness_yes' %}">Yes</a>
+    <a class="waves-effect waves-light btn" href="{% url 'take_pic' %}">No</a>
+    <div class="divider"></div>
+      <div class="section">
+        <h4> What is this Project? </h4>
+        <p class="flow-text">
+        Description of the project
+         </p>
+
+    </div>
+  </body>
+
+{% endblock content %}
