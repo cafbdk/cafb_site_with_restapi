@@ -1,3 +1,6 @@
+import sys,os
+import json
+import unirest, csv
 from django.shortcuts import render
 from django.views.generic import ListView, View, CreateView
 # Create your views here.
@@ -8,11 +11,9 @@ from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 
-
 from .nutrition import UpcFood
-import os
-import json
-import unirest
+from lib.nutrition_parser import is_wellness
+
 
 
 envs = {
@@ -121,6 +122,11 @@ class UPCAPI(View):
             del context['created']
             context.update({'status': True})
             # print context
+            #time to test the nutrition value
+            fname=os.path.join(os.path.abspath(os.path.dirname(__file__)),os.path.pardir,'lib','rules.csv')
+            with open(fname,'r') as f:
+                rules = csv.DictReader(f)
+                print is_wellness(json.dumps(obj.values()),'03',rules)                
 
         except: #Product.DoesNotExist
 
@@ -140,6 +146,12 @@ class UPCAPI(View):
 
                 context['gtin_name'] = context['item_name']
                 context.update({'status': True})
+                fname=os.path.join(os.path.abspath(os.path.dirname(__file__)),os.path.pardir,'lib','rules.csv')
+                #time to test the nutrition value
+                with open(fname,'r') as f:
+                    rules = csv.DictReader(f)
+                    wellness=is_wellness(response.body,'03',rules)                
+                    context['wellness']=wellness                
             else:
                 context = {'status': False}
 
