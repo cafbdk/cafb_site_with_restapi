@@ -12,6 +12,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework import permissions
 from .serializers import ProductSerializer
 from .models import Product
 
@@ -62,8 +63,8 @@ class UPCAPI(View):
         """
         upc_code = request.POST.get('upc_code', 'NONE')
 
-        api_key = os.environ.get('api_key', '')  #api_key,
-        api_id = os.environ.get('api_id', '') #api_id)
+        api_key = os.environ.get('api_key', '')
+        api_id = os.environ.get('api_id', '')
 
         try:
             # raise Exception
@@ -75,8 +76,6 @@ class UPCAPI(View):
             # print context
 
         except: #Product.DoesNotExist
-
-
             response = unirest.get("https://api.nutritionix.com/v1_1/item?upc={upc}&appId={apiID}&appKey={apiKey}".format(
                     apiID=api_id, apiKey=api_key, upc=upc_code),
                                    headers={"Accept": "application/json"})
@@ -105,7 +104,17 @@ class ProductViewSet(viewsets.ModelViewSet):
     """
     queryset = Product.objects.all().order_by('created').reverse()
     serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
+
+    def retrieve(self, request, pk=None):
+        try:
+            product = Product.objects.get(gtin_code=pk)
+            serializer = ProductSerializer(product)
+            return Response(serializer.data)
+        except Product.DoesNotExist:
+            # add get or request from another API
+            raise Http404
 
 
 class ProductDetail(APIView):
@@ -116,7 +125,6 @@ class ProductDetail(APIView):
         try:
             return Product.objects.get(gtin_code=upccode)
         except Product.DoesNotExist:
-
             # add get or request from another API
             raise Http404
 

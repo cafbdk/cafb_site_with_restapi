@@ -34,8 +34,8 @@ router.register(r'products', ProductViewSet)
 
 urlpatterns = [
     # Examples:
-    url(r'^api/', include(router.urls)),
-    url(r'^api/v1/upc=(?P<upccode>[0-9]+)/$', ProductDetail.as_view()),
+    url(r'^api/v1/', include(router.urls)),
+    # url(r'^api/v1/(?P<upccode>[0-9]+)/$', ProductViewSet.as_view()),
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'upc/', UPCAPI.as_view()),
     # url(r'^upc_found/$',UPCFoundView.as_view(), name='upc_found'),
