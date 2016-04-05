@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
-from landingpage.models import Product
+from cafb_main.models import Product
 
 class Command(BaseCommand):
     help = 'Provides intial data for UPC codes'
@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
         path = settings.BASE_DIR
 
-        file = path +'/landingpage/fixtures/fixture.csv'
+        file = path +'/cafb_main/fixtures/fixture.csv'
 
         self.stdout.write(file)
         with open(file, 'r+') as f:

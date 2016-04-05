@@ -3,5 +3,5 @@ from __future__ import unicode_literals
 from django.apps import AppConfig
 
 
-class LandingpageConfig(AppConfig):
-    name = 'landingpage'
+class Cafb_MainConfig(AppConfig):
+    name = 'cafb_main'
