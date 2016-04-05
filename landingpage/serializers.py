@@ -1,4 +1,4 @@
-from restapi.models import Product
+from .models import Product
 from rest_framework import serializers
 
 

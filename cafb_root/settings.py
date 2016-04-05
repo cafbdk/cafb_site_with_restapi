@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'djangobower',
     'landingpage',
     'rest_framework',
-    'restapi',
+    # 'restapi',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -142,7 +142,7 @@ STATICFILES_FINDERS = [
 ]
 
 BOWER_COMPONENTS_ROOT = PROJECT_ROOT + '/components/'
- 
+
 
 BOWER_INSTALLED_APPS = (
     'materialize',

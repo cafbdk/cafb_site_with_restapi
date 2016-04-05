@@ -3,11 +3,17 @@ from django.views.generic import ListView, View, CreateView
 # Create your views here.
 from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponse, JsonResponse
-from restapi.models import Product
 from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
-
+from django.http import Http404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import render
+from rest_framework import viewsets
+from .serializers import ProductSerializer
+from .models import Product
 
 from .nutrition import UpcFood
 import os
@@ -45,61 +51,7 @@ class HomeView(ListView):
 
         context['list_products'] = file_products
 
-        obj = Product.objects.filter(gtin_code=12000017421)
-        # raise Exception((obj.values())[0])
-
         return context
-
-class UPCFoundView(ListView):
-    model = Product
-    template_name = 'UPC_Found.html'
-
-    def upc_found(self, **kwargs):
-        return render(self, template_name)
-
-class UPCNotFoundView(ListView):
-    model = Product
-    template_name = 'UPC_Not_Found.html'
-
-    def upc_not_found(self, **kwargs):
-        return render(self, template_name)
-
-class TryAgainView(ListView):
-    model = Product
-    template_name = 'try_again.html'
-
-    def try_again(self, **kwargs):
-        return render(self, template_name)
-
-class TakePicView(ListView):
-    model = Product
-    template_name = 'take_pic.html'
-
-    def take_pic(self, **kwargs):
-        return render(self, template_name)
-
-class SkipView(ListView):
-    model = Product
-    template_name = 'skip.html'
-
-    def skip(self, **kwargs):
-        return render(self, template_name)
-
-class WellnessYesView(ListView):
-    model = Product
-    template_name = 'wellness_yes.html'
-
-    def wellness_yes(self, **kwargs):
-        return render(self, template_name)
-
-class WellnessNoView(ListView):
-    model = Product
-    template_name = 'wellness_no.html'
-
-    def wellness_no(self, **kwargs):
-        return render(self, template_name)
-
-
 
 class UPCAPI(View):
     http_method_names = [u'post']
@@ -145,3 +97,30 @@ class UPCAPI(View):
 
         context.update({'gtin_code': upc_code})
         return HttpResponse(json.dumps(context), content_type = "application/json")
+
+
+class ProductViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Product.objects.all().order_by('created').reverse()
+    serializer_class = ProductSerializer
+
+
+
+class ProductDetail(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+    def get_object(self, upccode):
+        try:
+            return Product.objects.get(gtin_code=upccode)
+        except Product.DoesNotExist:
+
+            # add get or request from another API
+            raise Http404
+
+    def get(self, request, upccode, format=None):
+        product = self.get_object(upccode)
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)

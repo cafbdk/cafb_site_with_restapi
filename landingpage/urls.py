@@ -19,21 +19,30 @@ Inlcude this in your project urls.py
 url(r'^slack/', include('django_slack_invite.urls'))
 
 """
-from django.conf.urls import url
-from .views import HomeView, UPCAPI, UPCFoundView, UPCNotFoundView, TryAgainView, TakePicView, SkipView, WellnessYesView, WellnessNoView
+from django.conf.urls import url, include
+from .views import HomeView
+from .views import ProductDetail
+from .views import ProductViewSet
+from .views import UPCAPI
+
+from rest_framework import routers
+from rest_framework.urlpatterns import format_suffix_patterns
+
+
+router = routers.DefaultRouter()
+router.register(r'products', ProductViewSet)
 
 urlpatterns = [
+    # Examples:
+    url(r'^api/', include(router.urls)),
+    url(r'^api/v1/upc=(?P<upccode>[0-9]+)/$', ProductDetail.as_view()),
     url(r'^$', HomeView.as_view(), name='home'),
-    url(r'^upc_found/$',UPCFoundView.as_view(), name='upc_found'),
-    url(r'^upc_not_found/$',UPCNotFoundView.as_view(), name='upc_not_found'),
-    url(r'^try_again/$',TryAgainView.as_view(), name='try_again'),
-    url(r'^take_pic/$',TakePicView.as_view(), name='take_pic'),
-    url(r'^skip/$',SkipView.as_view(), name='skip'),
-    url(r'^wellness_yes/$',WellnessYesView.as_view(), name='wellness_yes'),
-    url(r'^wellness_no/$',WellnessNoView.as_view(), name='wellness_no'),
-
-        url(r'upc/', UPCAPI.as_view()),
-
-
-
+    url(r'upc/', UPCAPI.as_view()),
+    # url(r'^upc_found/$',UPCFoundView.as_view(), name='upc_found'),
+    # url(r'^upc_not_found/$',UPCNotFoundView.as_view(), name='upc_not_found'),
+    # url(r'^try_again/$',TryAgainView.as_view(), name='try_again'),
+    # url(r'^take_pic/$',TakePicView.as_view(), name='take_pic'),
+    # url(r'^skip/$',SkipView.as_view(), name='skip'),
+    # url(r'^wellness_yes/$',WellnessYesView.as_view(), name='wellness_yes'),
+    # url(r'^wellness_no/$',WellnessNoView.as_view(), name='wellness_no'),
 ]
