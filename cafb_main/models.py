@@ -9,3 +9,6 @@ class Product(models.Model):
 
     class Meta:
         ordering = ('created',)
+
+    def __unicode__(self):
+        return self.gtin_name

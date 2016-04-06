@@ -7,14 +7,7 @@
     <div id="main">
 
 
-    <div class="divider"></div>
-      <div class="section">
-        <h4> What is this Project? </h4>
-        <p class="flow-text">
-        Description of the project
-         </p>
 
-    </div>
 
     <div class="divider"></div>
       <div class="section">
@@ -25,6 +18,8 @@
           <section id="container" class="container">
 
 
+
+              <form id='ajax_form' class="col s12">  {% csrf_token %}
               <div class="controls">
                   <fieldset class="input-group">
                       <input type="file" capture/>
@@ -32,13 +27,18 @@
                   </fieldset>
 
               </div>
-              <div id="result_strip">
-                  <ul class="thumbnails"></ul>
-              </div>
+
               <div id="interactive" class="viewport"></div>
-              <div id="debug" class="detection"></div>
+
+                  </form>
+              <!--<div id="debug" class="detection"></div>-->
           </section>
-          <!-- <form id='ajax_form' class="col s12"> {% csrf_token %}
+
+          <div id="'upcDiv"></div>
+         <!-- <form id='ajax_form' class="col s12"> {% csrf_token %}
+
+
+
 
               <div class="input-field col">
                   <i class="material-icons prefix">playlist_add</i>
@@ -49,8 +49,11 @@
                 </button>
 
               </div>
-          </form> -->
+          </form>-->
         </div>
+
+
+
       </div>
 
 
@@ -58,57 +61,57 @@
 
     <div class="divider"></div>
 
-      <h4>Items in Database </h4>
+      <!--<h4>Items in Database </h4>-->
 
-      <table class="responsive-table highlight">
-        <thead>
-          <tr>
-              <th data-field="activity">UPC Code</th>
-              <th data-field="time">Item Name</th>
-              <th data-field="time">Date Entered into DB</th>
-
-
-          </tr>
-        </thead>
-
-        <tbody>
-            {% for product in list_products %}
-            <tr>
-              <td>{{ product.gtin_code }}</td>
-              <td>{{ product.gtin_name }}</td>
-              <td>{{ product.created }}</td>
-
-            </tr>
-            {% endfor %}
-
-        </tbody>
-      </table>
-
-      {% if is_paginated %}
-        <ul class="pagination">
-        {% if page_obj.has_previous %}
-            <li>
-                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
-            </li>
-        {% endif %}
-            <li class="">
-                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
-            </li>
-        {% if page_obj.has_next %}
-            <li>
-                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
-            </li>
-        {% endif %}
-        </ul>
-        {% else %}
-            <h3>Your Products List</h3>
-            <p>Prodcuts not yet available</p>
-        {% endif %}
+      <!--<table class="responsive-table highlight">-->
+        <!--<thead>-->
+          <!--<tr>-->
+              <!--<th data-field="activity">UPC Code</th>-->
+              <!--<th data-field="time">Item Name</th>-->
+              <!--<th data-field="time">Date Entered into DB</th>-->
 
 
+          <!--</tr>-->
+        <!--</thead>-->
+
+        <!--<tbody>-->
+            <!--{% for product in list_products %}-->
+            <!--<tr>-->
+              <!--<td>{{ product.gtin_code }}</td>-->
+              <!--<td>{{ product.gtin_name }}</td>-->
+              <!--<td>{{ product.created }}</td>-->
+
+            <!--</tr>-->
+            <!--{% endfor %}-->
+
+        <!--</tbody>-->
+      <!--</table>-->
+
+      <!--{% if is_paginated %}-->
+        <!--<ul class="pagination">-->
+        <!--{% if page_obj.has_previous %}-->
+            <!--<li>-->
+                <!--<span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>-->
+            <!--</li>-->
+        <!--{% endif %}-->
+            <!--<li class="">-->
+                <!--<span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>-->
+            <!--</li>-->
+        <!--{% if page_obj.has_next %}-->
+            <!--<li>-->
+                <!--<span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>-->
+            <!--</li>-->
+        <!--{% endif %}-->
+        <!--</ul>-->
+        <!--{% else %}-->
+            <!--<h3>Your Products List</h3>-->
+            <!--<p>Products not yet available</p>-->
+        <!--{% endif %}-->
 
 
-    </div>
+
+
+    <!--</div>-->
 
 
   </body>

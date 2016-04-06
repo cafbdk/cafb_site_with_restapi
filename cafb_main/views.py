@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.views.generic import ListView, View, CreateView
-# Create your views here.
 from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponse, JsonResponse
 from django.core.paginator import Paginator
@@ -15,12 +14,13 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from .serializers import ProductSerializer
 from .models import Product
-
+from .utils import is_wellness
 from .nutrition import UpcFood
 import os
 import json
 import unirest
-
+from django.conf import settings
+import csv
 
 envs = {
     'TOKEN' : os.environ.get('api_key', ''),
@@ -54,6 +54,8 @@ class HomeView(ListView):
 
         return context
 
+
+
 class UPCAPI(View):
     http_method_names = [u'post']
 
@@ -63,8 +65,8 @@ class UPCAPI(View):
         """
         upc_code = request.POST.get('upc_code', 'NONE')
 
-        api_key = os.environ.get('api_key', '')
-        api_id = os.environ.get('api_id', '')
+        api_key = os.environ.get('api_key', '')  #api_key,
+        api_id = os.environ.get('api_id', '') #api_id)
 
         try:
             # raise Exception
@@ -74,8 +76,16 @@ class UPCAPI(View):
             del context['created']
             context.update({'status': True})
             # print context
+            PATH = settings.BASE_DIR
+            fname  = PATH +'/cafb_main/fixtures/rules.csv'
+            with open(fname,'r') as f:
+                rules = csv.DictReader(f)
+                wellness=is_wellness(response.body,'03',rules)
+                context['wellness']=wellness
 
         except: #Product.DoesNotExist
+
+
             response = unirest.get("https://api.nutritionix.com/v1_1/item?upc={upc}&appId={apiID}&appKey={apiKey}".format(
                     apiID=api_id, apiKey=api_key, upc=upc_code),
                                    headers={"Accept": "application/json"})
@@ -91,12 +101,19 @@ class UPCAPI(View):
 
                 context['gtin_name'] = context['item_name']
                 context.update({'status': True})
+
+                PATH = settings.BASE_DIR
+                fname  = PATH +'/cafb_main/fixtures/rules.csv'
+                #time to test the nutrition value
+                with open(fname,'r') as f:
+                    rules = csv.DictReader(f)
+                    wellness=is_wellness(response.body,'03',rules)
+                    context['wellness']=wellness
             else:
                 context = {'status': False}
 
         context.update({'gtin_code': upc_code})
         return HttpResponse(json.dumps(context), content_type = "application/json")
-
 
 class ProductViewSet(viewsets.ModelViewSet):
     """
