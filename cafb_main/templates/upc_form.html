@@ -1,0 +1,11 @@
+<form id='ajax_form' class="col s12"> {% csrf_token %}
+    <div class="input-field col">
+        <i class="material-icons prefix">playlist_add</i>
+        <input name="upc_code" type="text" pattern="\d*" class="validate">
+        <label for="upc_code">UPC Numeric Code</label>
+      <button id='ajax_form' class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="material-icons right">send</i>
+      </button>
+
+    </div>
+</form>

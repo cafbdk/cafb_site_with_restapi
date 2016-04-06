@@ -1,0 +1,21 @@
+<!-- {% include 'wellness_rule_form.html' %} -->
+
+<div class="section">
+  <h5>Create a new Wellness Rule</h5>
+
+  <div class="row">
+    <form id='wellness_rule_form' class="col s12"> {% csrf_token %}
+        {% include '_input.html' with name="wellness_rule[category_id]" label="Category Id" %}
+
+        {% include '_input.html' with name="wellness_rule[nutrient]" label="Nutrient" %}
+
+        {% include '_input.html' with name="wellness_rule[nutritional_field]" label="Nutritional Field" %}
+
+        {% include '_input.html' with name="wellness_rule[rule_type]" label="Rule Type" %}
+
+        <button id='ajax_form' class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+        </button>
+    </form>
+  </div>
+</div>

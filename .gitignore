@@ -4,3 +4,4 @@ staticfiles
 .env
 bower_components
 *.sqlite3
+.DS_Store

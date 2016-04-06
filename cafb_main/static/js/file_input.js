@@ -1,3 +1,5 @@
+// cafb_main ok
+
 $(function() {
     var App = {
         init: function() {
