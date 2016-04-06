@@ -8,9 +8,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        path = settings.BASE_DIR
+        PATH = settings.BASE_DIR
 
-        file = path +'/cafb_main/fixtures/fixture.csv'
+        file  = PATH +'/cafb_main/fixtures/fixture.csv'
+
+        # '/Users/ndanielsen/Projects/cafb_site/cafb_site_with_restapi/cafb_root/cafb_main/fixtures/fixture.csv'
+
 
         self.stdout.write(file)
         with open(file, 'r+') as f:
