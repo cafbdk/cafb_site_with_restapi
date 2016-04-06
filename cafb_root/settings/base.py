@@ -45,7 +45,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djangobower',
     'cafb_main',
     'rest_framework',
 )
@@ -147,15 +146,8 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder',
 ]
 
-BOWER_COMPONENTS_ROOT = PROJECT_ROOT + '/components/'
-
-
-BOWER_INSTALLED_APPS = (
-    'materialize',
-)
 
 #### Django REST FRAMEWORK
 
