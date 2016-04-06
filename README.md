@@ -53,8 +53,6 @@ Open http://localhost:5000/ in your browser
 
 `heroku create`
 
-`heroku config:add BUILDPACK_URL=https://github.com/amanjain/heroku-buildpack-python-with-django-bower.git`
-
 `heroku config:add api_key=(insert nutrix api key here)`
 
 `heroku config:add api_id=(insert nutrix api id here)``
