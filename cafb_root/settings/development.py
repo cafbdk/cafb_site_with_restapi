@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 from .base import *
 
+INSTALLED_APPS += ('django_nose', )
 
-WEB_CONCURRENCY = '2'
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
-
-api_key = '11f63d248e7dd4f0d7c47eb8ff64d736'
-api_id = '9592ddc9'
+# Tell nose to measure coverage on the 'foo' and 'bar' apps
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=cafb_main',
+]

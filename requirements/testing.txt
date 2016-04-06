@@ -1,1 +1,5 @@
 -r base.txt
+
+django-dotenv==1.4.1
+coverage==4.0.3
+django-nose==1.4.3
