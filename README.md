@@ -17,7 +17,7 @@
 
 `source venv/bin/activate`
 
-`pip install -r requirements.txt`
+`pip install -r requirements/development.txt`
 
 ### Set up your local environment variables
 
@@ -79,12 +79,12 @@ Open http://localhost:5000/ in your browser
 
 # REST API
 
-No tokens or keys required for this version of the API
+No tokens or keys required for this version of the API, but unless you are logged in, it's read only.
 
 #### Listview of all UPCs in DB so far
-https://cafbsite.herokuapp.com/api/
+https://cafbsite.herokuapp.com/api/v1/
 
 #### Query Products UPCs already in the DB
-https://cafbsite.herokuapp.com/api/auth/upc=52009830171/?format=json
+http://localhost:8000/api/v1/products/857063002645/
 
-Should return {"gtin_code":"52009830171","gtin_name":"Honey","created":"2016-03-06T04:34:59.001637Z"}
+Should return {"gtin_code":"857063002645","gtin_name":"Korean Stir Fry","created":"2016-04-06T03:45:13.816144Z"}
