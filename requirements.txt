@@ -3,7 +3,7 @@ Django==1.9.4
 django-bower==5.1.0
 django-dotenv==1.4.1
 django-filter==0.13.0
-djangorestframework==3.3.2
+djangorestframework==3.11.2
 gunicorn==19.4.5
 Markdown==2.6.5
 poster==0.8.1
